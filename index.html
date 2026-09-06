@@ -246,7 +246,18 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 .slot-card .slot-empty{font-size:.78rem;color:var(--text-muted);}
 @media(max-width:760px){.slot-grid{grid-template-columns:1fr;}}
 .accordion{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:1rem;overflow:hidden;}
-.accordion summary{cursor:pointer;padding:.9rem 1.1rem;font-weight:600;font-family:var(--font-display);font-size:1.02rem;list-style:none;background:var(--paper-dark);user-select:none;}
+.accordion summary{cursor:pointer;padding:.9rem 1.1rem;font-weight:600;font-family:var(--font-display);font-size:1.02rem;list-style:none;background:var(--paper-dark);user-select:none;display:flex;align-items:center;justify-content:space-between;gap:.6rem;}
+.accordion__title{flex:1;}
+.accordion__del{flex:none;background:none;border:1px solid var(--line);color:var(--text-muted);border-radius:var(--radius);width:24px;height:24px;line-height:1;cursor:pointer;font-size:.8rem;}
+.accordion__del:hover{background:#f4d9d6;color:#8c2d24;border-color:#e3b9b4;}
+.admin-only{display:none;}
+.staff-only{display:none;}
+.doc-search-results{margin-top:.5rem;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);max-height:340px;overflow-y:auto;}
+.doc-search-results__item{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.55rem .8rem;border-bottom:1px solid var(--line);cursor:pointer;font-size:.85rem;}
+.doc-search-results__item:last-child{border-bottom:none;}
+.doc-search-results__item:hover{background:var(--paper);}
+.doc-search-results__folder{font-size:.72rem;color:var(--text-muted);white-space:nowrap;}
+.doc-search-results__empty{padding:.7rem .8rem;font-size:.82rem;color:var(--text-muted);}
 .accordion summary::-webkit-details-marker{display:none;}
 .accordion summary::before{content:"▸  ";color:var(--accent);}
 .accordion[open] summary::before{content:"▾  ";}
@@ -1716,9 +1727,9 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
     <section class="content-section page-shell">
       <div class="with-sidebar"><aside class="page-sidebar"><h2>Bibliothèque numérique</h2><ul><li class=""><a href="#ressources/bibliotheque-numerique/textes-officiels">Textes officiels</a></li><li class=""><a href="#ressources/bibliotheque-numerique/articles-ecrit-1">Articles Ecrit 1</a></li><li class="is-active"><a href="#ressources/bibliotheque-numerique/articles-ecrit-2">Articles Ecrit 2</a></li><li class=""><a href="#ressources/bibliotheque-numerique/copies-de-concours">Copies de concours</a></li><li class=""><a href="#ressources/bibliotheque-numerique/oral-1">Oral 1</a></li></ul></aside><div>
         <h1>Articles Ecrit 2</h1>
-        <div class="doc-search-page"><input type="search" placeholder="Rechercher un document sur cette page…" /></div>
+        <div class="doc-search-page"><input type="search" id="articles-e2-search" placeholder="Rechercher un document sur cette page…" /><div class="doc-search-results" id="articles-e2-results" hidden></div></div>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>0 - AEEPS</summary>
+        <summary><span class="accordion__title">0 - AEEPS</span><button type="button" class="accordion__del admin-only" data-static-slug="aeeps" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-aeeps">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -1736,7 +1747,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>1 - Activité de l'enseignant</summary>
+        <summary><span class="accordion__title">1 - Activité de l'enseignant</span><button type="button" class="accordion__del admin-only" data-static-slug="activite-enseignant" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-activite-enseignant">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -1754,7 +1765,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>2 - Autonomie</summary>
+        <summary><span class="accordion__title">2 - Autonomie</span><button type="button" class="accordion__del admin-only" data-static-slug="autonomie" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-autonomie">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -1772,7 +1783,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>3 - Compétences</summary>
+        <summary><span class="accordion__title">3 - Compétences</span><button type="button" class="accordion__del admin-only" data-static-slug="competences" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-competences">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -1790,7 +1801,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>4 - Coop</summary>
+        <summary><span class="accordion__title">4 - Coop</span><button type="button" class="accordion__del admin-only" data-static-slug="coop" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-coop">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -1808,7 +1819,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>5 - Evaluation</summary>
+        <summary><span class="accordion__title">5 - Evaluation</span><button type="button" class="accordion__del admin-only" data-static-slug="evaluation" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-evaluation">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -1826,7 +1837,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>6 - Élève acteur</summary>
+        <summary><span class="accordion__title">6 - Élève acteur</span><button type="button" class="accordion__del admin-only" data-static-slug="eleve-acteur" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-eleve-acteur">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -1844,7 +1855,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>7 - Essai - Erreur</summary>
+        <summary><span class="accordion__title">7 - Essai - Erreur</span><button type="button" class="accordion__del admin-only" data-static-slug="essai-erreur" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-essai-erreur">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -1862,7 +1873,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>8 - Expérience Corporelle</summary>
+        <summary><span class="accordion__title">8 - Expérience Corporelle</span><button type="button" class="accordion__del admin-only" data-static-slug="experience-corporelle" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-experience-corporelle">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -1880,7 +1891,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>9 - Interdisciplinarité</summary>
+        <summary><span class="accordion__title">9 - Interdisciplinarité</span><button type="button" class="accordion__del admin-only" data-static-slug="interdisciplinarite" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-interdisciplinarite">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -1898,7 +1909,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>10 - Mixité - Hétérogénéité</summary>
+        <summary><span class="accordion__title">10 - Mixité - Hétérogénéité</span><button type="button" class="accordion__del admin-only" data-static-slug="mixite-heterogeneite" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-mixite-heterogeneite">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -1916,7 +1927,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>11 - Plaisir - Émotions</summary>
+        <summary><span class="accordion__title">11 - Plaisir - Émotions</span><button type="button" class="accordion__del admin-only" data-static-slug="plaisir-emotions" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-plaisir-emotions">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -1934,7 +1945,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>12 - Public difficile</summary>
+        <summary><span class="accordion__title">12 - Public difficile</span><button type="button" class="accordion__del admin-only" data-static-slug="public-difficile" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-public-difficile">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -1952,7 +1963,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>13 - Performance</summary>
+        <summary><span class="accordion__title">13 - Performance</span><button type="button" class="accordion__del admin-only" data-static-slug="performance" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-performance">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -1970,7 +1981,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>14 - Projet</summary>
+        <summary><span class="accordion__title">14 - Projet</span><button type="button" class="accordion__del admin-only" data-static-slug="projet" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-projet">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -1988,7 +1999,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>15 - Rôles sociaux</summary>
+        <summary><span class="accordion__title">15 - Rôles sociaux</span><button type="button" class="accordion__del admin-only" data-static-slug="roles-sociaux" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-roles-sociaux">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -2006,7 +2017,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>16 - Revues Complètes</summary>
+        <summary><span class="accordion__title">16 - Revues Complètes</span><button type="button" class="accordion__del admin-only" data-static-slug="revues-completes" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-revues-completes">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -2024,7 +2035,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>17 - Santé</summary>
+        <summary><span class="accordion__title">17 - Santé</span><button type="button" class="accordion__del admin-only" data-static-slug="sante" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-sante">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -2042,7 +2053,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>18 - Science - Théorie App</summary>
+        <summary><span class="accordion__title">18 - Science - Théorie App</span><button type="button" class="accordion__del admin-only" data-static-slug="science-theorie-app" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-science-theorie-app">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -2060,7 +2071,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>19 - Sens dans...apprentissages</summary>
+        <summary><span class="accordion__title">19 - Sens dans...apprentissages</span><button type="button" class="accordion__del admin-only" data-static-slug="sens-apprentissages" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-sens-apprentissages">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -2078,7 +2089,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>20 - Situations complexes</summary>
+        <summary><span class="accordion__title">20 - Situations complexes</span><button type="button" class="accordion__del admin-only" data-static-slug="situations-complexes" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-situations-complexes">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -2096,7 +2107,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>20 bis - FSP</summary>
+        <summary><span class="accordion__title">20 bis - FSP</span><button type="button" class="accordion__del admin-only" data-static-slug="fsp" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-fsp">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -2114,7 +2125,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>21 - TICE</summary>
+        <summary><span class="accordion__title">21 - TICE</span><button type="button" class="accordion__del admin-only" data-static-slug="tice" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-tice">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -2132,7 +2143,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>22 - Techniques & apprentissage</summary>
+        <summary><span class="accordion__title">22 - Techniques & apprentissage</span><button type="button" class="accordion__del admin-only" data-static-slug="techniques-apprentissage" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-techniques-apprentissage">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -2150,7 +2161,7 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 </div></div>
       </details>
       <details class="accordion" name="articles-ecrit-2-group">
-        <summary>23 - Lamotte - La Réunion</summary>
+        <summary><span class="accordion__title">23 - Lamotte - La Réunion</span><button type="button" class="accordion__del admin-only" data-static-slug="lamotte-la-reunion" title="Supprimer ce dossier">✕</button></summary>
         <div class="accordion__body"><div class="docboard" data-doc-category="ressources-bibliotheque-numerique-articles-ecrit-2-lamotte-la-reunion">
   <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
   <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
@@ -2167,6 +2178,15 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
   </div>
 </div></div>
       </details>
+      <div id="articles-e2-dynamic"></div>
+      <div class="admin-form-card staff-only" id="articles-e2-add-card" style="margin-top:1.4rem;">
+        <h3>Ajouter un menu</h3>
+        <form id="articles-e2-add-form">
+          <div class="field"><label>Nom du menu</label><input type="text" name="label" required placeholder="ex. Nouveau thème" /></div>
+          <button class="btn btn-primary" type="submit">Ajouter</button>
+          <p class="upload-status" id="articles-e2-add-status"></p>
+        </form>
+      </div>
       </div></div>
     </section>
   </section>  <section class="route-section" data-route="ressources/bibliotheque-numerique/copies-de-concours" hidden>
@@ -2816,7 +2836,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, getDoc, getDocs, setDoc,
-         query, where, onSnapshot, serverTimestamp }
+         query, where, onSnapshot, serverTimestamp, arrayUnion }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import { getStorage, ref, uploadBytesResumable, uploadBytes, getDownloadURL, deleteObject }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
@@ -3642,6 +3662,166 @@ document.querySelectorAll(".docboard").forEach(initDocboard);
       await addDoc(collection(db,"staffLinks"),{title,url,createdByEmail:p.email,createdAt:serverTimestamp()});
       statusEl.textContent="Ajouté ✓";statusEl.className="upload-status ok";form.reset();
     }catch(err){statusEl.textContent="Erreur : "+err.message;statusEl.className="upload-status err";}
+  });
+})();
+
+/* ─── Bibliothèque numérique — Articles Ecrit 2 (menus dynamiques) ─── */
+(function(){
+  const sect=document.querySelector('[data-route="ressources/bibliotheque-numerique/articles-ecrit-2"]');
+  if(!sect)return;
+  const PAGE_KEY="articles-ecrit-2";
+  const CAT_PREFIX="ressources-bibliotheque-numerique-articles-ecrit-2-";
+  const dynamicWrap=sect.querySelector("#articles-e2-dynamic");
+  const addCard=sect.querySelector("#articles-e2-add-card");
+  const addForm=sect.querySelector("#articles-e2-add-form");
+  const addStatus=sect.querySelector("#articles-e2-add-status");
+  const searchInput=sect.querySelector("#articles-e2-search");
+  const resultsBox=sect.querySelector("#articles-e2-results");
+
+  const registry=[];
+
+  function slugify(str){
+    return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+      .replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"")||("menu-"+Date.now());
+  }
+
+  function docCategoryBlockHTML(cat){
+    return `<div class="docboard" data-doc-category="${cat}">
+  <div class="docboard__head"><div><h3>Documents</h3><p>Téléchargeables par tous les membres connectés.</p></div></div>
+  <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
+  <div class="upload-zone" hidden>
+    <button class="upload-toggle" type="button">Ajouter un document</button>
+    <form class="upload-form" hidden>
+      <div class="upload-form__row"><input type="text" placeholder="Nom (optionnel — pour plusieurs fichiers laisse vide)" /><button class="btn btn-primary" type="submit">Déposer</button></div>
+      <div class="drop-zone" style="margin-top:.5rem;"><span class="drop-label">Glisse un ou plusieurs fichiers ici ou clique</span><input type="file" multiple /></div>
+      <p class="drop-hint">Tu peux glisser plusieurs fichiers simultanément — chacun sera déposé séparément.</p>
+      <div class="progress-track"><div class="progress-bar"></div></div>
+      <div class="upload-queue"></div>
+      <p class="upload-status"></p>
+    </form>
+  </div>
+</div>`;
+  }
+
+  function buildAccordion(slug,label){
+    const det=document.createElement("details");
+    det.className="accordion";det.name="articles-ecrit-2-group";
+    det.dataset.folderSlug=slug;
+    det.innerHTML=`<summary><span class="accordion__title">${label}</span><button type="button" class="accordion__del admin-only" data-dynamic-slug="${slug}" title="Supprimer ce dossier">✕</button></summary>
+      <div class="accordion__body">${docCategoryBlockHTML(CAT_PREFIX+slug)}</div>`;
+    return det;
+  }
+
+  function registerBoard(detailsEl,label,board){
+    const cat=board.dataset.docCategory;
+    let docsCache=[];
+    onSnapshot(query(collection(db,"documents"),where("category","==",cat)),snap=>{
+      docsCache=snap.docs.map(d=>({id:d.id,...d.data()}));
+    });
+    registry.push({slug:detailsEl.dataset.folderSlug,label,detailsEl,getDocs:()=>docsCache});
+  }
+
+  sect.querySelectorAll('details.accordion[name="articles-ecrit-2-group"]').forEach(det=>{
+    const board=det.querySelector(".docboard");
+    if(!board)return;
+    const labelEl=det.querySelector(".accordion__title");
+    const label=labelEl?labelEl.textContent:"";
+    det.dataset.folderSlug=board.dataset.docCategory.replace(CAT_PREFIX,"");
+    registerBoard(det,label,board);
+  });
+
+  onSnapshot(query(collection(db,"customFolders"),where("page","==",PAGE_KEY)),snap=>{
+    snap.docChanges().forEach(change=>{
+      if(change.type==="added"){
+        const data=change.doc.data();
+        if(dynamicWrap.querySelector(`details[data-doc-id="${change.doc.id}"]`))return;
+        const det=buildAccordion(data.slug,data.label);
+        det.dataset.docId=change.doc.id;
+        dynamicWrap.appendChild(det);
+        const board=det.querySelector(".docboard");
+        initDocboard(board);
+        registerBoard(det,data.label,board);
+        const role=window.afmeProfile?.role;
+        det.querySelectorAll(".admin-only").forEach(el=>{el.style.display=(role==="admin")?"":"none";});
+      }else if(change.type==="removed"){
+        const det=dynamicWrap.querySelector(`details[data-doc-id="${change.doc.id}"]`);
+        if(det){
+          const idx=registry.findIndex(r=>r.detailsEl===det);
+          if(idx>-1)registry.splice(idx,1);
+          det.remove();
+        }
+      }
+    });
+  });
+
+  document.addEventListener("afme:profile",e=>{
+    const role=e.detail?.role;
+    if(addCard) addCard.style.display=(role==="admin"||role==="formateur")?"":"none";
+    sect.querySelectorAll(".admin-only").forEach(el=>{el.style.display=(role==="admin")?"":"none";});
+  });
+
+  addForm?.addEventListener("submit",async e=>{
+    e.preventDefault();
+    const p=window.afmeProfile;if(!(p?.role==="admin"||p?.role==="formateur"))return;
+    const label=addForm.elements["label"].value.trim();
+    if(!label){addStatus.textContent="Donne un nom au menu.";addStatus.className="upload-status err";return;}
+    const slug=slugify(label);
+    try{
+      await addDoc(collection(db,"customFolders"),{page:PAGE_KEY,slug,label,createdByEmail:p.email,createdAt:serverTimestamp()});
+      addStatus.textContent="Ajouté ✓";addStatus.className="upload-status ok";addForm.reset();
+    }catch(err){addStatus.textContent="Erreur : "+err.message;addStatus.className="upload-status err";}
+  });
+
+  sect.addEventListener("click",async e=>{
+    const btn=e.target.closest(".accordion__del");
+    if(!btn)return;
+    e.preventDefault();e.stopPropagation();
+    if(window.afmeProfile?.role!=="admin")return;
+    if(!confirm("Supprimer ce dossier ? Les documents déjà déposés dedans resteront stockés mais ce menu n'apparaîtra plus."))return;
+    if(btn.dataset.staticSlug){
+      try{await setDoc(doc(db,"pageFolderSettings",PAGE_KEY),{hiddenStatic:arrayUnion(btn.dataset.staticSlug)},{merge:true});}
+      catch(err){console.error(err);}
+    }else if(btn.dataset.dynamicSlug){
+      const det=btn.closest("details");const docId=det?.dataset.docId;
+      if(docId){try{await deleteDoc(doc(db,"customFolders",docId));}catch(err){console.error(err);}}
+    }
+  });
+
+  onSnapshot(doc(db,"pageFolderSettings",PAGE_KEY),snap=>{
+    const hidden=new Set(snap.exists()?(snap.data().hiddenStatic||[]):[]);
+    sect.querySelectorAll('details.accordion[name="articles-ecrit-2-group"]').forEach(det=>{
+      if(det.parentElement!==dynamicWrap) det.hidden=hidden.has(det.dataset.folderSlug);
+    });
+  });
+
+  function escHtml(s){return (s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+  searchInput?.addEventListener("input",()=>{
+    const term=searchInput.value.trim().toLowerCase();
+    if(!term){resultsBox.hidden=true;resultsBox.innerHTML="";return;}
+    const matches=[];
+    registry.forEach(r=>{
+      r.getDocs().forEach(d=>{
+        if((d.label||"").toLowerCase().includes(term)) matches.push({doc:d,folder:r});
+      });
+    });
+    resultsBox.hidden=false;
+    if(!matches.length){resultsBox.innerHTML='<div class="doc-search-results__empty">Aucun document trouvé.</div>';return;}
+    resultsBox.innerHTML=matches.slice(0,30).map((m,i)=>`
+      <div class="doc-search-results__item" data-idx="${i}">
+        <span>📄 ${escHtml(m.doc.label)}</span>
+        <span class="doc-search-results__folder">${escHtml(m.folder.label)}</span>
+      </div>`).join("");
+    resultsBox.querySelectorAll(".doc-search-results__item").forEach((item,i)=>{
+      item.addEventListener("click",()=>{
+        const m=matches[i];
+        m.folder.detailsEl.open=true;
+        m.folder.detailsEl.scrollIntoView({behavior:"smooth",block:"center"});
+        resultsBox.hidden=true;
+      });
+    });
+  });
+  document.addEventListener("click",e=>{
+    if(searchInput&&resultsBox&&!searchInput.contains(e.target)&&!resultsBox.contains(e.target)) resultsBox.hidden=true;
   });
 })();
 
