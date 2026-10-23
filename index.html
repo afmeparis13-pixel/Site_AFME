@@ -10953,6 +10953,7 @@ document.addEventListener("afme:profile",e=>{
       const d=getDraft();
       if(!d.date){alert("La date est obligatoire.");return;}
       const p=window.afmeProfile;
+      const prevDoc=isNew?null:allDocsS1.concat(allDocsS2).find(x=>x.id===id);
       try{
         if(isNew){
           const ref=await addDoc(collection(db,"formationSchedule"),{semester,year,date:d.date,badge:d.badge,theme:d.theme,titre:d.titre,i1:d.i1,i2:d.i2,i3:d.i3,i4:d.i4,i5:d.i5,createdByEmail:p?.email||null,createdAt:serverTimestamp()});
@@ -10962,8 +10963,60 @@ document.addEventListener("afme:profile",e=>{
           await mirrorPublic(id,{semester,year,date:d.date,badge:d.badge,theme:d.theme,titre:d.titre});
         }
         editingId=null;renderAddZone();renderGroups();
+        notifyAdded(prevDoc,d,isNew?null:id);
       }catch(err){alert("Erreur : "+err.message);}
     });
+  }
+
+  // ── Mail automatique (EmailJS) : récapitulatif des interventions de la personne ajoutée ──
+  const EMAILJS={service:"service_tblc9hq",template:"template_u2socsh",key:"_0ee7H_BYUqBrSBeT"};
+  const normName=s=>(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();
+  function emailOf(name){
+    const f=(formateursByYear["2026/27"]||[]).find(x=>normName(x.prenom)===normName(name));
+    return f&&f.email?f.email.trim():"";
+  }
+  function interventionsHtml(name,list){
+    const rowsHtml=list.map(s=>{
+      const p=s.date.split("-").map(Number);
+      const dt=new Date(p[0],p[1]-1,p[2]);
+      const JL=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
+      const dateTxt=JL[dt.getDay()]+" "+p[2]+" "+MOIS[p[1]-1]+" "+p[0];
+      const others=[s.i1,s.i2,s.i3,s.i4,s.i5].filter(n=>n&&normName(n)!==normName(name));
+      const badge=s.badge?`<span style="background:${colorForBadge(s.badge)};color:#fff;font-size:12px;font-weight:700;padding:2px 9px;border-radius:99px;">${escHtml(s.badge)}</span> `:"";
+      return `<tr><td style="padding:10px 12px;border-bottom:1px solid #e9e2d0;vertical-align:top;white-space:nowrap;"><b>${escHtml(dateTxt)}</b></td><td style="padding:10px 12px;border-bottom:1px solid #e9e2d0;vertical-align:top;">${badge}${s.theme?escHtml(s.theme):""}<br>${escHtml(s.titre||"")}${others.length?`<br><span style="color:#6b6456;font-size:13px;">Avec : ${others.map(escHtml).join(", ")}</span>`:""}</td></tr>`;
+    }).join("");
+    return `<table style="width:100%;border-collapse:collapse;font-size:14px;">${rowsHtml}</table>`;
+  }
+  async function sendRecap(name,draft,editedId){
+    const to=emailOf(name);
+    if(!to)return {name,status:"noemail"};
+    const base=(semester==="S1"?allDocsS1:allDocsS2).filter(s=>s.id!==editedId);
+    const all=base.concat([Object.assign({id:editedId||"__new"},draft)])
+      .filter(s=>s.date&&[s.i1,s.i2,s.i3,s.i4,s.i5].some(n=>normName(n)===normName(name)))
+      .sort((a,b)=>a.date<b.date?-1:(a.date>b.date?1:0));
+    try{
+      const r=await fetch("https://api.emailjs.com/api/v1.0/email/send",{
+        method:"POST",headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({service_id:EMAILJS.service,template_id:EMAILJS.template,user_id:EMAILJS.key,
+          template_params:{to_email:to,to_name:name,interventions:interventionsHtml(name,all)}})
+      });
+      if(!r.ok)return {name,status:"error",detail:await r.text()};
+      return {name,status:"ok",to};
+    }catch(err){return {name,status:"error",detail:err.message};}
+  }
+  async function notifyAdded(prevDoc,draft,editedId){
+    const prev=prevDoc?[prevDoc.i1,prevDoc.i2,prevDoc.i3,prevDoc.i4,prevDoc.i5].map(normName):[];
+    const seen=new Set();
+    const added=[draft.i1,draft.i2,draft.i3,draft.i4,draft.i5].filter(n=>{
+      const k=normName(n);
+      if(!n||INTERVENANTS_SPECIAUX.indexOf(n)>-1||prev.indexOf(k)>-1||seen.has(k))return false;
+      seen.add(k);return true;
+    });
+    if(!added.length)return;
+    const results=[];
+    for(const n of added)results.push(await sendRecap(n,draft,editedId));
+    const lines=results.map(r=>r.status==="ok"?`✔ Mail envoyé à ${r.name} (${r.to})`:r.status==="noemail"?`✖ ${r.name} : aucune adresse e-mail dans la Liste des formateurs, mail non envoyé`:`✖ ${r.name} : échec de l'envoi (${r.detail||"erreur"})`);
+    alert(lines.join("\n"));
   }
 
   // Miroir public, sans formateurs : lu par tous les membres connectés (adhérents compris)
