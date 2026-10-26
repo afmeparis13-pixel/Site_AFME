@@ -124,6 +124,9 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 .breadcrumb a{color:var(--text-muted);text-decoration:none;}
 .breadcrumb a:hover{color:var(--ink);text-decoration:underline;}
 .content-section{padding:2rem 0;}
+/* Garde la marge latérale de .page-shell (sinon contenu collé au bord sur téléphone) */
+.breadcrumb.page-shell,.content-section.page-shell{padding-left:1.25rem;padding-right:1.25rem;}
+@media(max-width:600px){.breadcrumb.page-shell,.content-section.page-shell,.rh-bar.page-shell{padding-left:1rem;padding-right:1rem;}}
 .route-section[hidden]{display:none;}
 .with-sidebar{display:grid;grid-template-columns:220px 1fr;gap:2rem;align-items:start;}
 .page-sidebar{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:.9rem;position:sticky;top:4.5rem;}
@@ -380,6 +383,103 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 .corr-box{flex:1 1 260px;background:#eaf5ef;border:1px solid #bfe0cf;border-radius:8px;padding:.45rem .8rem;font-size:.8rem;}
 .corr-box.wait{background:#fbf3df;border-color:#ecd98d;color:#7a5a12;}
 .dv-badge{margin-left:auto;align-self:center;font-size:.7rem;font-weight:700;color:#fff;padding:.18rem .65rem;border-radius:999px;white-space:nowrap;}
+
+/* ─── Ressources : accueil, recherche globale, méga-menu ─── */
+.rh-hero{background:var(--ink);color:var(--paper);border-radius:var(--radius);padding:1.6rem 1.6rem 1.4rem;margin-bottom:1.6rem;}
+.rh-hero h1{color:var(--paper);margin:0 0 .3rem;}
+.rh-hero p{margin:0 0 1rem;color:var(--paper-dark);font-size:.9rem;max-width:62ch;}
+.rh-search{position:relative;}
+.rh-searchbox{display:flex;align-items:center;gap:.5rem;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:.15rem .7rem;box-shadow:var(--shadow);}
+.rh-searchbox:focus-within{border-color:var(--accent);box-shadow:0 0 0 3px rgba(201,138,62,.18);}
+.rh-searchbox input{flex:1;min-width:0;border:none;outline:none;background:transparent;font:inherit;font-size:.95rem;padding:.6rem 0;color:var(--text);}
+.rh-searchbox kbd{font:inherit;font-size:.7rem;color:var(--text-muted);border:1px solid var(--line);border-radius:3px;padding:.05rem .35rem;}
+.rh-results{margin-top:.6rem;background:var(--white);color:var(--text);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);max-height:min(70vh,560px);overflow-y:auto;}
+.rh-results--float{position:absolute;left:0;right:0;top:100%;z-index:60;margin-top:.3rem;}
+.rh-results__group{padding:.45rem .8rem .2rem;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text-muted);}
+.rh-results__empty{padding:.8rem;font-size:.85rem;color:var(--text-muted);}
+.rh-folders{display:flex;flex-wrap:wrap;gap:.35rem;padding:.3rem .8rem .6rem;}
+.rh-list{list-style:none;margin:0;padding:0;}
+.rh-item{display:flex;align-items:flex-start;gap:.6rem;padding:.55rem .8rem;border-top:1px solid var(--paper-dark);}
+.rh-item:first-child{border-top:none;}
+.rh-item:hover{background:var(--paper);}
+.rh-ico{flex:none;width:1.4rem;text-align:center;font-size:1rem;line-height:1.4;}
+.rh-body{flex:1;min-width:0;}
+.rh-name{display:block;color:var(--text);font-weight:600;font-size:.88rem;text-decoration:none;overflow-wrap:anywhere;}
+.rh-name:hover{color:var(--accent-dark);text-decoration:underline;}
+.rh-where{display:inline;background:none;border:none;padding:0;font:inherit;font-size:.75rem;color:var(--text-muted);cursor:pointer;text-align:left;}
+.rh-where:hover{color:var(--accent-dark);text-decoration:underline;}
+.rh-meta{flex:none;font-size:.72rem;color:var(--text-muted);white-space:nowrap;padding-top:.15rem;}
+.rh-item mark{background:rgba(201,138,62,.25);color:inherit;border-radius:2px;}
+.rh-layout{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:1.4rem;align-items:start;}
+.rh-layout h2{font-size:1.15rem;margin:0 0 .7rem;}
+.rh-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1rem;}
+.rh-card{background:var(--white);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:var(--radius);box-shadow:var(--shadow);display:flex;flex-direction:column;}
+.rh-card__head{display:flex;align-items:center;gap:.55rem;padding:.8rem .9rem .5rem;text-decoration:none;color:var(--ink);}
+.rh-card__head:hover .rh-card__title{color:var(--accent-dark);text-decoration:underline;}
+.rh-card__ico{font-size:1.25rem;}
+.rh-card__title{flex:1;font-family:var(--font-display);font-weight:600;font-size:1.05rem;}
+.rh-card__body{padding:0 .9rem .85rem;display:flex;flex-direction:column;gap:.55rem;}
+.rh-row__label{display:block;font-size:.74rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:.25rem;text-decoration:none;}
+.rh-row__label:hover{color:var(--accent-dark);}
+.rh-chips{display:flex;flex-wrap:wrap;gap:.3rem;}
+.rh-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.28rem .55rem;border:1px solid var(--line);border-radius:999px;background:var(--paper);color:var(--text);font-size:.78rem;text-decoration:none;line-height:1.2;cursor:pointer;}
+.rh-chip:hover{border-color:var(--accent);background:var(--white);color:var(--accent-dark);}
+.rh-chip small{color:var(--text-muted);font-size:.7rem;}
+.rh-chip--empty{opacity:.6;}
+.rh-count,.rh-chip__n{display:inline-block;min-width:1.3rem;padding:0 .35rem;border-radius:999px;background:var(--accent);color:#fff;font-size:.68rem;font-weight:700;text-align:center;line-height:1.3rem;}
+.rh-chip__n{min-width:1.1rem;line-height:1.1rem;font-size:.64rem;}
+.rh-count--zero{background:var(--paper-dark);color:var(--text-muted);}
+.rh-open{font-size:.82rem;color:var(--accent-dark);text-decoration:none;font-weight:600;}
+.rh-open:hover{text-decoration:underline;}
+.rh-side{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:.9rem 0 .3rem;}
+.rh-side h2{padding:0 .9rem;}
+.rh-side .rh-item{padding:.5rem .9rem;}
+.rh-contact{margin-top:1.4rem;font-size:.85rem;color:var(--text-muted);}
+.rh-bar{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin-top:.6rem;margin-bottom:.4rem;}
+.rh-bar__home{font-size:.8rem;font-weight:600;color:var(--accent-dark);text-decoration:none;white-space:nowrap;}
+.rh-bar__home:hover{text-decoration:underline;}
+.rh-bar .rh-search{flex:1;min-width:220px;max-width:560px;}
+.rh-bar .rh-searchbox{box-shadow:none;}
+.rh-bar .rh-searchbox input{padding:.4rem 0;font-size:.85rem;}
+.docboard.rh-flash{animation:rhFlash 1.8s ease-out;}
+@keyframes rhFlash{0%,35%{box-shadow:0 0 0 3px var(--accent);}100%{box-shadow:0 0 0 3px transparent;}}
+@media(min-width:861px){
+  nav.main-nav .submenu.submenu--mega{left:var(--mega-left,auto);right:auto;top:100%;width:var(--mega-w,900px);padding:1rem 1.1rem;grid-template-columns:repeat(4,minmax(0,1fr));gap:.4rem 1.2rem;z-index:70;}
+  nav.main-nav li.has-mega:hover > .submenu--mega,nav.main-nav li.has-mega:focus-within > .submenu--mega{display:grid;}
+  nav.main-nav .submenu--mega.rh-closed{display:none !important;}
+}
+nav.main-nav .submenu--mega ul{list-style:none;margin:0;padding:0;}
+nav.main-nav .submenu--mega .mega-col{min-width:0;}
+nav.main-nav .submenu--mega .mega-head{font-family:var(--font-display);font-weight:600;font-size:.9rem;color:var(--ink);border-bottom:1px solid var(--line);margin-bottom:.25rem;padding:.35rem .5rem;}
+nav.main-nav .submenu--mega .mega-search{background:var(--accent);color:#fff;font-weight:600;border-radius:var(--radius);margin-bottom:.4rem;}
+nav.main-nav .submenu--mega .mega-search:hover{background:var(--accent-dark);color:#fff;}
+nav.main-nav .submenu--mega li li > a{padding:.28rem .5rem;}
+nav.main-nav .submenu--mega .mega-sub{display:flex;flex-wrap:wrap;gap:.15rem .25rem;padding:0 .5rem .3rem 1rem;}
+nav.main-nav .submenu--mega .mega-sub a{display:inline;padding:.05rem .3rem;font-size:.72rem;color:var(--text-muted);border-radius:3px;}
+nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
+@media(max-width:860px){
+  .rh-layout{grid-template-columns:1fr;}
+  .rh-hero{padding:1.2rem 1rem;}
+  nav.main-nav .submenu--mega .mega-head{color:var(--paper);border-color:rgba(255,255,255,.15);}
+  nav.main-nav .submenu--mega .mega-sub a{color:var(--paper-dark);opacity:.8;}
+}
+/* Téléphone : rien ne doit dépasser à droite de l’écran */
+.with-sidebar{grid-template-columns:220px minmax(0,1fr);}
+.with-sidebar > *{min-width:0;}
+.doc-card__move select{max-width:100%;}
+.doc-list{grid-template-columns:minmax(0,1fr);}
+.doc-list > li{min-width:0;}
+@media(max-width:860px){
+  .with-sidebar{grid-template-columns:minmax(0,1fr);}
+  .site-header__inner{gap:.6rem;}
+  .site-header__brand{min-width:0;flex:1 1 auto;}
+  .site-header__brand > span{min-width:0;overflow:hidden;text-overflow:ellipsis;}
+}
+@media(max-width:420px){
+  .site-header__inner{padding-left:1rem;padding-right:1rem;}
+  .site-logo{height:28px;}
+  .site-header__brand{font-size:.98rem;}
+}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/exceljs/4.4.0/exceljs.min.js"></script>
@@ -7895,8 +7995,22 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
   </section>  <section class="route-section" data-route="ressources" hidden>
     <nav class="breadcrumb page-shell"><a href="#accueil">Accueil</a> / <span>Ressources</span></nav>
     <section class="content-section page-shell">
-      <h1>Ressources</h1>
-      <div class="docboard"><div class="docboard__head"><div><h3>Sous-rubriques</h3></div></div><ul class="doc-list"><li class="doc-card"><div class="doc-card__icon">📂</div><div class="doc-card__body"><a class="doc-card__name doc-card__name--link" href="#ressources/bibliotheque-numerique">Bibliothèque numérique</a></div></li><li class="doc-card"><div class="doc-card__icon">📂</div><div class="doc-card__body"><a class="doc-card__name doc-card__name--link" href="#ressources/concours">Concours</a></div></li><li class="doc-card"><div class="doc-card__icon">📂</div><div class="doc-card__body"><a class="doc-card__name doc-card__name--link" href="#ressources/contact">Contact</a></div></li></ul></div>
+      <div class="rh-hero">
+        <h1>Ressources</h1>
+        <p>Textes officiels, articles, copies de concours, ressources d'oral : cherchez un document par son nom, ou ouvrez directement un dossier ci-dessous.</p>
+        <div class="rh-search" id="rh-hub-search"></div>
+      </div>
+      <div class="rh-layout">
+        <div>
+          <h2>Accès direct</h2>
+          <div class="rh-grid" id="rh-grid"><p class="rh-results__empty">Chargement…</p></div>
+        </div>
+        <aside class="rh-side">
+          <h2>Derniers ajouts</h2>
+          <ul class="rh-list" id="rh-recent"><li class="rh-results__empty">Chargement…</li></ul>
+        </aside>
+      </div>
+      <p class="rh-contact">Une ressource manque ou un lien ne fonctionne plus ? <a href="#ressources/contact">Écrivez à l'équipe AFME</a>.</p>
     </section>
   </section>  <section class="route-section" data-route="ressources/bibliotheque-numerique" hidden>
     <nav class="breadcrumb page-shell"><a href="#accueil">Accueil</a> / <a href="#ressources">Ressources</a> / <span>Bibliothèque numérique</span></nav>
@@ -13059,6 +13173,356 @@ document.addEventListener("afme:profile",e=>{
 
   // Reconstruire la liste quand les données changent
   document.addEventListener("afme:profile",()=>setTimeout(buildPageMgmtList,500));
+})();
+
+/* ─── Ressources — accueil, recherche globale, accès direct et méga-menu ─── */
+(function(){
+  const HUB="ressources";
+  const SKIP=["ressources/contact"];
+  const ICONS={"textes-officiels":"📜","articles-ecrit-1":"📰","articles-ecrit-2":"📰","copies-de-concours":"📝","oral-1":"🏃","concours":"🏆"};
+  const norm=s=>(s||"").toString().toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+  const secOf=r=>document.querySelector(`.route-section[data-route="${CSS.escape(r)}"]`);
+  const titleOf=r=>{const h=secOf(r)?.querySelector("h1");return (h?h.textContent:r.split("/").pop()).trim();};
+  const hiddenFor=r=>secOf(r)?.dataset.hidden==="admin"&&window.afmeProfile?.role!=="admin";
+  const lastSeg=r=>r.slice(r.lastIndexOf("/")+1);
+
+  /* Libellé d'un dossier (accordéon, section Concours ou titre du bloc) */
+  function boardLabel(b){
+    const sum=b.closest("details")?.querySelector(":scope > summary");
+    if(sum){
+      const t=sum.querySelector(".accordion__title");
+      if(t) return t.textContent.trim();
+      const c=sum.cloneNode(true);c.querySelectorAll("button").forEach(x=>x.remove());
+      return c.textContent.trim();
+    }
+    const cs=b.closest(".concours-section")?.querySelector(".concours-section__title");
+    if(cs) return cs.textContent.trim();
+    return "";
+  }
+
+  /* Arbre des pages Ressources, lu directement dans le HTML (s'adapte aux ajouts) */
+  let tree=null;
+  function buildTree(){
+    const nodes=new Map();
+    document.querySelectorAll('.route-section[data-route^="ressources/"]').forEach(s=>{
+      const r=s.dataset.route;
+      if(SKIP.includes(r)||hiddenFor(r)) return;
+      nodes.set(r,{route:r,title:titleOf(r),children:[],boards:[],parent:r.slice(0,r.lastIndexOf("/"))});
+    });
+    nodes.forEach(n=>{nodes.get(n.parent)?.children.push(n);});
+    nodes.forEach(n=>{
+      secOf(n.route).querySelectorAll(".docboard[data-doc-category]").forEach(b=>{
+        if(b.closest(".concours-section")&&b.closest(".concours-section").style.display==="none") return;
+        n.boards.push({cat:b.dataset.docCategory,label:boardLabel(b)});
+      });
+    });
+    const cats=new Map();
+    nodes.forEach(n=>n.boards.forEach(b=>cats.set(b.cat,{route:n.route,label:b.label})));
+    tree={nodes,cats};
+    return tree;
+  }
+  function pathOf(route){
+    const out=[];let r=route;
+    while(r&&r!==HUB&&r!=="ressources/bibliotheque-numerique"){out.unshift(titleOf(r));r=r.slice(0,r.lastIndexOf("/"));}
+    return out.join(" › ");
+  }
+  function locate(cat){
+    const t=tree||buildTree();
+    let hit=t.cats.get(cat);
+    if(!hit){ // dossier créé après coup : on retrouve la page par son préfixe
+      let best="";
+      t.nodes.forEach(n=>{const p=n.route.replace(/\//g,"-")+"-";if(cat.startsWith(p)&&p.length>best.length)best=n.route;});
+      hit={route:best||HUB,label:""};
+    }
+    const p=pathOf(hit.route);
+    return {route:hit.route,cat,path:hit.label?(p?p+" › ":"")+hit.label:p};
+  }
+
+  /* Documents Firestore des ressources (catégories « ressources-… ») */
+  let docs=[],loaded=false,unsub=null;
+  const onDocs=new Set();
+  function startDocs(){
+    if(unsub) return;
+    unsub=onSnapshot(query(collection(db,"documents"),where("category",">=","ressources-"),where("category","<","ressources-")),snap=>{
+      docs=snap.docs.map(d=>({id:d.id,...d.data()}));loaded=true;
+      onDocs.forEach(f=>{try{f();}catch(e){console.error(e);}});
+    },err=>{console.error("Ressources :",err);unsub=null;});
+  }
+  document.addEventListener("afme:profile",e=>{const r=e.detail?.role;if(r&&r!=="pending")startDocs();});
+  if(window.afmeProfile&&window.afmeProfile.role!=="pending") startDocs();
+
+  /* Liens écrits en dur dans les pages (ex. Concours) */
+  const staticLinks=[...document.querySelectorAll('.route-section[data-route^="ressources/"] .doc-list a.doc-card__name--link[target="_blank"]')].map(a=>({
+    el:a,label:a.textContent.trim(),url:a.getAttribute("href"),isExternalLink:true,
+    route:a.closest(".route-section").dataset.route,
+    section:a.closest(".concours-section")?.querySelector(".concours-section__title")?.textContent.trim()||""
+  }));
+
+  function allItems(){
+    buildTree();
+    const items=docs.map(d=>{const l=locate(d.category||"");return{...d,route:l.route,path:l.path};});
+    staticLinks.forEach(s=>{
+      if(!s.el.isConnected) return;
+      const cs=s.el.closest(".concours-section");if(cs&&cs.style.display==="none") return;
+      if(!tree.nodes.has(s.route)) return;
+      const p=pathOf(s.route);
+      items.push({label:s.label,url:s.url,isExternalLink:true,route:s.route,category:"",path:s.section?(p?p+" › ":"")+s.section:p,static:true});
+    });
+    return items;
+  }
+  function countMaps(items){
+    const byRoute=new Map(),byCat=new Map();
+    items.forEach(d=>{
+      if(d.category) byCat.set(d.category,(byCat.get(d.category)||0)+1);
+      let r=d.route;
+      while(r&&r.startsWith("ressources")){byRoute.set(r,(byRoute.get(r)||0)+1);if(r===HUB)break;r=r.includes("/")?r.slice(0,r.lastIndexOf("/")):"";}
+    });
+    return{byRoute,byCat};
+  }
+
+  /* Affichage d'un document */
+  function iconFor(d){
+    if(d.isYoutube) return "▶️";
+    if(d.isExternalLink) return "🔗";
+    const k=docKind(d.label||"");
+    return k==="pdf"?"📕":k==="image"?"🖼️":"📄";
+  }
+  function highlight(text,words){
+    let html=escHtml(text);
+    if(!words.length) return html;
+    const n=norm(text);const marks=new Array(text.length).fill(false);
+    words.forEach(w=>{let i=n.indexOf(w);while(i>=0&&w){for(let k=i;k<i+w.length&&k<marks.length;k++)marks[k]=true;i=n.indexOf(w,i+w.length);}});
+    if(n.length!==text.length) return html; // sécurité si la normalisation change la longueur
+    let out="",open=false;
+    for(let i=0;i<text.length;i++){
+      if(marks[i]&&!open){out+="<mark>";open=true;}
+      if(!marks[i]&&open){out+="</mark>";open=false;}
+      out+=escHtml(text[i]);
+    }
+    return out+(open?"</mark>":"");
+  }
+  function itemHtml(d,words=[]){
+    const meta=d.createdAt?fmtDate(d.createdAt):(d.static?"Lien":"");
+    return `<li class="rh-item"><span class="rh-ico">${iconFor(d)}</span><div class="rh-body">
+      <a class="rh-name" href="${escHtml(d.url||"#")}" target="_blank" rel="noopener">${highlight(d.label||"Sans titre",words)}</a>
+      <button type="button" class="rh-where" data-go-route="${escHtml(d.route)}" data-go-cat="${escHtml(d.category||"")}">📂 ${escHtml(d.path||"Ressources")}</button>
+    </div><span class="rh-meta">${escHtml(meta)}</span></li>`;
+  }
+
+  /* Aller à un dossier : ouvre la page, déplie l'accordéon et fait défiler jusqu'au bloc */
+  let pendingFocus=null,focusTimer=null;
+  function focusCat(tries=0){
+    const f=pendingFocus;if(!f)return;
+    const sec=secOf(f.route);
+    const b=sec?.querySelector(`.docboard[data-doc-category="${CSS.escape(f.cat)}"]`);
+    if(!sec||sec.hidden||!b){ // page pas encore affichée : on réessaie un court instant
+      if(tries<15) focusTimer=setTimeout(()=>focusCat(tries+1),80); else pendingFocus=null;
+      return;
+    }
+    pendingFocus=null;
+    let d=b.closest("details");while(d){d.open=true;d=d.parentElement?.closest("details");}
+    setTimeout(()=>{
+      const tgt=b.closest("details")||b,hdr=document.querySelector(".site-header,header");
+      const off=(hdr&&getComputedStyle(hdr).position.match(/sticky|fixed/)?hdr.offsetHeight:0)+16;
+      window.scrollTo({top:tgt.getBoundingClientRect().top+window.scrollY-off,behavior:"smooth"});
+      b.classList.remove("rh-flash");void b.offsetWidth;b.classList.add("rh-flash");
+    },30);
+  }
+  function goTo(route,cat){
+    clearTimeout(focusTimer);
+    pendingFocus=cat?{route,cat}:null;
+    if(currentRoute()!==route) location.hash="#"+route;
+    else if(!cat) window.scrollTo({top:0,behavior:"smooth"});
+    if(cat) focusTimer=setTimeout(()=>focusCat(0),80);
+  }
+  document.addEventListener("click",e=>{
+    const t=e.target.closest("[data-go-route]");if(!t)return;
+    e.preventDefault();
+    goTo(t.dataset.goRoute,t.dataset.goCat||"");
+    t.closest(".rh-results--float")?.setAttribute("hidden","");
+  });
+
+  /* Recherche globale */
+  function runSearch(term){
+    const words=norm(term).split(/\s+/).filter(Boolean);
+    if(!words.length) return null;
+    const items=allItems();
+    const match=s=>{const n=norm(s);return words.every(w=>n.includes(w));};
+    const docHits=items.filter(d=>match((d.label||"")+" "+(d.path||"")))
+      .map(d=>({d,score:(match(d.label||"")?2:0)+(norm(d.label).startsWith(words[0])?1:0)}))
+      .sort((a,b)=>b.score-a.score||((b.d.createdAt?.toMillis?.()||0)-(a.d.createdAt?.toMillis?.()||0)))
+      .map(x=>x.d);
+    const folders=[];
+    tree.nodes.forEach(n=>{
+      const p=pathOf(n.route);
+      if(match(p)) folders.push({route:n.route,cat:"",title:n.title,path:p});
+      n.boards.forEach(b=>{if(b.label&&match(p+" "+b.label))folders.push({route:n.route,cat:b.cat,title:b.label,path:p});});
+    });
+    return{words,docHits,folders:folders.slice(0,12)};
+  }
+  function resultsHtml(res){
+    if(!res) return "";
+    if(!res.docHits.length&&!res.folders.length) return `<div class="rh-results__empty">Aucun résultat. Essayez un autre mot (auteur, APSA, année…).</div>`;
+    let h="";
+    if(res.folders.length){
+      h+=`<div class="rh-results__group">Dossiers</div><div class="rh-folders">`+res.folders.map(f=>
+        `<a class="rh-chip" href="#${escHtml(f.route)}" data-go-route="${escHtml(f.route)}" data-go-cat="${escHtml(f.cat)}">📂 ${escHtml(f.title)}${f.cat&&f.path?` <small>${escHtml(f.path)}</small>`:(f.path&&f.path!==f.title?` <small>${escHtml(f.path.split(" › ").slice(0,-1).join(" › "))}</small>`:"")}</a>`).join("")+`</div>`;
+    }
+    if(res.docHits.length){
+      const shown=res.docHits.slice(0,60);
+      h+=`<div class="rh-results__group">Documents (${res.docHits.length})</div><ul class="rh-list">${shown.map(d=>itemHtml(d,res.words)).join("")}</ul>`;
+      if(res.docHits.length>shown.length) h+=`<div class="rh-results__empty">… et ${res.docHits.length-shown.length} autres : précisez la recherche.</div>`;
+    }else if(!loaded){
+      h+=`<div class="rh-results__empty">Chargement des documents…</div>`;
+    }
+    return h;
+  }
+  function mountSearch(host,{float=false,placeholder}={}){
+    if(!host||host.dataset.rhMounted) return null;
+    host.dataset.rhMounted="1";
+    host.innerHTML=`<div class="rh-searchbox"><span aria-hidden="true">🔎</span><input type="search" autocomplete="off" placeholder="${escHtml(placeholder||"Rechercher dans toutes les ressources : titre, auteur, APSA, année…")}" aria-label="Rechercher dans toutes les ressources"/><kbd title="Raccourci clavier">/</kbd></div><div class="rh-results${float?" rh-results--float":""}" hidden></div>`;
+    const input=host.querySelector("input"),box=host.querySelector(".rh-results");
+    const run=()=>{const res=runSearch(input.value);box.hidden=!res;box.innerHTML=resultsHtml(res);};
+    input.addEventListener("input",run);
+    input.addEventListener("focus",()=>{if(input.value.trim())run();});
+    input.addEventListener("keydown",e=>{
+      if(e.key==="Escape"){input.value="";run();input.blur();}
+      if(e.key==="Enter"){const a=box.querySelector(".rh-name");if(a){e.preventDefault();window.open(a.href,"_blank","noopener");}}
+    });
+    onDocs.add(()=>{if(input.value.trim()&&!box.hidden)run();});
+    if(float) document.addEventListener("click",e=>{if(!host.contains(e.target))box.hidden=true;});
+    return input;
+  }
+
+  /* Raccourci « / » pour chercher depuis n'importe quelle page Ressources */
+  document.addEventListener("keydown",e=>{
+    if(e.key!=="/"||e.metaKey||e.ctrlKey||e.altKey) return;
+    const tag=(document.activeElement?.tagName||"").toLowerCase();
+    if(["input","textarea","select"].includes(tag)||document.activeElement?.isContentEditable) return;
+    const sec=document.querySelector('.route-section:not([hidden])');
+    const inp=sec?.querySelector(".rh-search input");
+    if(inp){e.preventDefault();inp.focus();}
+  });
+
+  /* Page d'accueil Ressources */
+  function chip(route,cat,label,n,extra=""){
+    return `<a class="rh-chip${n?"":" rh-chip--empty"}" href="#${escHtml(route)}" data-go-route="${escHtml(route)}" data-go-cat="${escHtml(cat||"")}">${escHtml(label)}${extra}${n?` <span class="rh-chip__n">${n}</span>`:""}</a>`;
+  }
+  function leaves(n,prefix){
+    if(!n.children.length) return [{n,label:prefix||n.title}];
+    let out=[];
+    if(n.boards.length) out.push({n,label:prefix||"Général",own:true});
+    n.children.forEach(c=>{out=out.concat(leaves(c,prefix?prefix+" · "+c.title:c.title));});
+    return out;
+  }
+  function renderHub(){
+    const grid=document.getElementById("rh-grid"),recent=document.getElementById("rh-recent");
+    if(!grid) return;
+    const items=allItems();
+    const {byRoute,byCat}=countMaps(items);
+    const families=[];
+    const biblio=tree.nodes.get("ressources/bibliotheque-numerique");
+    if(biblio) biblio.children.forEach(c=>families.push(c));
+    tree.nodes.forEach(n=>{if(n.parent===HUB&&n.route!=="ressources/bibliotheque-numerique")families.push(n);});
+    grid.innerHTML=families.map(f=>{
+      const total=byRoute.get(f.route)||0;
+      let body="";
+      if(f.children.length){
+        const loose=[],rows=[];
+        if(f.boards.length) loose.push(chip(f.route,"","Général",countOwn(f,byCat)));
+        f.children.forEach(c=>{
+          if(c.children.length){
+            rows.push(`<div><a class="rh-row__label" href="#${escHtml(c.route)}">${escHtml(c.title)}</a><div class="rh-chips">${
+              leaves(c,"").map(l=>chip(l.n.route,"",l.label,l.own?countOwn(l.n,byCat):(byRoute.get(l.n.route)||0))).join("")}</div></div>`);
+          }else loose.push(chip(c.route,"",c.title,byRoute.get(c.route)||0));
+        });
+        if(loose.length) rows.unshift(`<div class="rh-chips">${loose.join("")}</div>`);
+        body=rows.join("");
+      }else{
+        const labelled=f.boards.filter(b=>b.label);
+        if(labelled.length>1){
+          body=`<div class="rh-chips">${labelled.map(b=>chip(f.route,b.cat,b.label,byCat.get(b.cat)||0)).join("")}</div>`;
+        }
+        body+=`<a class="rh-open" href="#${escHtml(f.route)}">Ouvrir ${escHtml(f.title)} →</a>`;
+      }
+      return `<article class="rh-card"><a class="rh-card__head" href="#${escHtml(f.route)}"><span class="rh-card__ico">${ICONS[lastSeg(f.route)]||"📂"}</span><span class="rh-card__title">${escHtml(f.title)}</span><span class="rh-count${total?"":" rh-count--zero"}" title="Nombre de documents">${total}</span></a><div class="rh-card__body">${body}</div></article>`;
+    }).join("")||`<p class="rh-results__empty">Aucune rubrique.</p>`;
+    if(recent){
+      if(!loaded){recent.innerHTML=`<li class="rh-results__empty">Chargement…</li>`;}
+      else{
+        const latest=items.filter(d=>d.createdAt?.toMillis).sort((a,b)=>b.createdAt.toMillis()-a.createdAt.toMillis()).slice(0,10);
+        recent.innerHTML=latest.length?latest.map(d=>itemHtml(d)).join(""):`<li class="rh-results__empty">Aucun document pour le moment.</li>`;
+      }
+    }
+  }
+  function countOwn(n,byCat){return n.boards.reduce((s,b)=>s+(byCat.get(b.cat)||0),0);}
+
+  /* Barre « Toutes les ressources + recherche » en haut de chaque page Ressources */
+  function mountBars(){
+    document.querySelectorAll('.route-section[data-route^="ressources/"]').forEach(s=>{
+      if(SKIP.includes(s.dataset.route)||s.querySelector(":scope > .rh-bar")) return;
+      const bar=document.createElement("div");
+      bar.className="page-shell rh-bar";
+      bar.innerHTML=`<a class="rh-bar__home" href="#${HUB}">← Toutes les ressources</a><div class="rh-search"></div>`;
+      const bc=s.querySelector(":scope > nav.breadcrumb");
+      if(bc) bc.after(bar); else s.prepend(bar);
+      mountSearch(bar.querySelector(".rh-search"),{float:true});
+    });
+  }
+
+  /* Méga-menu « Ressources » : un clic depuis n'importe quelle page */
+  const ORIGINAL=["#ressources/bibliotheque-numerique","#ressources/concours","#ressources/contact"];
+  function buildMega(){
+    const a=document.querySelector('nav.main-nav > ul > li > a[href="#ressources"]');
+    const li=a?.parentElement;const ul=li?.querySelector(":scope > .submenu");
+    if(!ul) return;
+    buildTree();
+    const extras=[...ul.children].filter(x=>!x.classList.contains("mega-col")&&!ORIGINAL.includes(x.querySelector("a")?.getAttribute("href")));
+    const link=(r,t)=>`<a href="#${escHtml(r)}">${escHtml(t)}</a>`;
+    const col=n=>{
+      const lis=n.children.map(c=>{
+        if(!c.children.length) return `<li>${link(c.route,c.title)}</li>`;
+        const subs=leaves(c,"").filter(l=>!l.own).map(l=>link(l.n.route,l.label)).join("");
+        return `<li>${link(c.route,c.title)}<div class="mega-sub">${subs}</div></li>`;
+      }).join("");
+      return `<li class="mega-col"><a class="mega-head" href="#${escHtml(n.route)}">${ICONS[lastSeg(n.route)]||"📂"} ${escHtml(n.title)}</a><ul>${lis}</ul></li>`;
+    };
+    const biblio=tree.nodes.get("ressources/bibliotheque-numerique");
+    const fams=biblio?biblio.children:[];
+    const withKids=fams.filter(f=>f.children.length);
+    const flat=fams.filter(f=>!f.children.length);
+    tree.nodes.forEach(n=>{if(n.parent===HUB&&n!==biblio&&!n.children.length)flat.push(n);});
+    const first=`<li class="mega-col"><a class="mega-head mega-search" href="#${HUB}">🔎 Rechercher dans les ressources</a><ul>${
+      flat.map(f=>`<li>${link(f.route,(ICONS[lastSeg(f.route)]||"📂")+" "+f.title)}</li>`).join("")
+    }<li>${link("ressources/contact","✉️ "+titleOf("ressources/contact"))}</li></ul></li>`;
+    ul.classList.add("submenu--mega");li.classList.add("has-mega");
+    ul.innerHTML=first+withKids.map(col).join("");
+    extras.forEach(x=>ul.appendChild(x));
+    if(!ul.dataset.rhWired){
+      ul.dataset.rhWired="1";
+      // Le menu s'ouvre juste sous « Ressources » et s'aligne sur la largeur de l'en-tête
+      const place=()=>{
+        const box=(document.querySelector(".site-header__inner")||document.body).getBoundingClientRect();
+        const lr=li.getBoundingClientRect();
+        const w=Math.min(980,box.width-32);
+        const left=Math.max(box.left+16,Math.min(lr.left,box.right-16-w));
+        li.style.setProperty("--mega-w",w+"px");
+        li.style.setProperty("--mega-left",(left-lr.left)+"px");
+      };
+      li.addEventListener("mouseenter",place);li.addEventListener("focusin",place);
+      ul.addEventListener("click",e=>{if(e.target.closest("a")){ul.classList.add("rh-closed");document.activeElement?.blur?.();}});
+      li.addEventListener("mouseleave",()=>ul.classList.remove("rh-closed"));
+    }
+  }
+
+  /* Démarrage */
+  mountSearch(document.getElementById("rh-hub-search"));
+  mountBars();
+  buildTree();buildMega();
+  onDocs.add(()=>{if(currentRoute()===HUB)renderHub();});
+  document.addEventListener("afme:route",e=>{if(e.detail===HUB)renderHub();});
+  document.addEventListener("afme:profile",()=>setTimeout(()=>{buildMega();if(currentRoute()===HUB)renderHub();},300));
+  if(currentRoute()===HUB) renderHub();
 })();
 
 </script>
