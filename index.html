@@ -435,6 +435,16 @@ nav.main-nav .submenu a:hover{background:var(--paper);}
 .rh-side h2{padding:0 .9rem;}
 .rh-side .rh-item{padding:.5rem .9rem;}
 .doc-type{display:inline-block;padding:0 .4rem;margin-right:.35rem;border:1px solid var(--line);border-radius:3px;background:var(--paper);font-size:.66rem;font-weight:700;letter-spacing:.04em;color:var(--text-muted);vertical-align:1px;}
+.guest-access{width:100%;max-width:420px;margin-top:1.2rem;text-align:center;color:var(--paper-dark);font-size:.85rem;}
+.guest-access p{margin:0 0 .6rem;}
+.guest-btn{width:100%;background:var(--accent);color:#fff;border:none;font-weight:600;padding:.75rem 1rem;font-size:.92rem;}
+.guest-btn:hover{background:var(--accent-dark);}
+.guest-banner{background:#fff6e2;border-bottom:1px solid #ecd59a;color:var(--text);font-size:.85rem;}
+.guest-banner__inner{max-width:1180px;margin:0 auto;padding:.6rem 1.25rem;display:flex;flex-wrap:wrap;gap:.6rem 1.2rem;align-items:center;justify-content:space-between;}
+.guest-banner__name{display:flex;align-items:center;gap:.4rem;font-weight:600;}
+.guest-banner__name input{padding:.35rem .55rem;border:1px solid var(--line);border-radius:var(--radius);font:inherit;font-weight:400;min-width:180px;}
+.role-badge--invite{background:#fff0c9;color:#7a5a00;}
+body.is-guest nav.main-nav,body.is-guest .nav-toggle,body.is-guest .header-search,body.is-guest .breadcrumb{display:none !important;}
 .rh-contact{margin-top:1.4rem;font-size:.85rem;color:var(--text-muted);}
 .rh-bar{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;margin-top:.6rem;margin-bottom:.4rem;}
 .rh-bar__home{font-size:.8rem;font-weight:600;color:var(--accent-dark);text-decoration:none;white-space:nowrap;}
@@ -550,6 +560,11 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
       <button type="button" id="show-forgot">Mot de passe oublié ?</button>
     </div>
   </div>
+  <div class="guest-access">
+    <p>Pas de compte ? Les retours des soirées O2/3 sont ouverts à tous.</p>
+    <button type="button" class="btn guest-btn" id="guest-enter">🎤 Accéder aux Retours Soirées O2/3</button>
+    <p class="auth-error" id="guest-err"></p>
+  </div>
 </div>
 
 <div id="app-screen">
@@ -580,6 +595,12 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
       <button id="sync-indicator" class="sync-indicator" title="État de la connexion"><span class="sync-dot"></span>Synchronisation</button>
       <span id="user-info"></span>
       <button id="logout-btn" class="btn btn-ghost" style="padding:.28rem .6rem;font-size:.76rem;">Se déconnecter</button>
+    </div>
+  </div>
+  <div id="guest-banner" class="guest-banner" hidden>
+    <div class="guest-banner__inner">
+      <span>👋 <strong>Accès invité</strong> — vous pouvez consulter et compléter les Retours Soirées O2/3 : documents, liens, commentaires et notes vocales.</span>
+      <label class="guest-banner__name">Votre nom <input type="text" id="guest-name" maxlength="60" placeholder="Prénom NOM" autocomplete="name"/></label>
     </div>
   </div>
   <div id="pending-banner" class="pending-banner" hidden>
@@ -2656,7 +2677,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-amahri-yahya-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -2688,7 +2709,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-amahri-yahya-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -2720,7 +2741,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-amahri-yahya-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -2764,7 +2785,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-ammour-hicham-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -2796,7 +2817,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-ammour-hicham-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -2828,7 +2849,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-ammour-hicham-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -2872,7 +2893,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-andrade-perez-gabriel-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -2904,7 +2925,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-andrade-perez-gabriel-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -2936,7 +2957,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-andrade-perez-gabriel-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -2980,7 +3001,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-auger-matthieu-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3012,7 +3033,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-auger-matthieu-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3044,7 +3065,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-auger-matthieu-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3088,7 +3109,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-baudet-romain-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3120,7 +3141,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-baudet-romain-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3152,7 +3173,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-baudet-romain-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3196,7 +3217,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-belarbi-amine-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3228,7 +3249,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-belarbi-amine-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3260,7 +3281,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-belarbi-amine-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3304,7 +3325,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-billand-cyriaque-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3336,7 +3357,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-billand-cyriaque-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3368,7 +3389,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-billand-cyriaque-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3412,7 +3433,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-boucekhine-zahra-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3444,7 +3465,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-boucekhine-zahra-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3476,7 +3497,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-boucekhine-zahra-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3520,7 +3541,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-boujnane-myriam-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3552,7 +3573,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-boujnane-myriam-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3584,7 +3605,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-boujnane-myriam-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3628,7 +3649,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-bouterfas-anissa-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3660,7 +3681,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-bouterfas-anissa-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3692,7 +3713,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-bouterfas-anissa-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3736,7 +3757,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-campos-damien-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3768,7 +3789,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-campos-damien-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3800,7 +3821,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-campos-damien-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3844,7 +3865,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-didi-mohamed-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3876,7 +3897,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-didi-mohamed-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3908,7 +3929,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-didi-mohamed-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3952,7 +3973,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-droual-aurelien-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -3984,7 +4005,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-droual-aurelien-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4016,7 +4037,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-droual-aurelien-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4060,7 +4081,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-el-ouahabi-douaa-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4092,7 +4113,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-el-ouahabi-douaa-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4124,7 +4145,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-el-ouahabi-douaa-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4168,7 +4189,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-felice-matteo-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4200,7 +4221,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-felice-matteo-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4232,7 +4253,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-felice-matteo-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4276,7 +4297,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-fontaine-johan-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4308,7 +4329,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-fontaine-johan-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4340,7 +4361,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-fontaine-johan-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4384,7 +4405,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-gaidia-woutanoc-armel-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4416,7 +4437,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-gaidia-woutanoc-armel-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4448,7 +4469,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-gaidia-woutanoc-armel-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4492,7 +4513,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-ghedjemis-younes-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4524,7 +4545,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-ghedjemis-younes-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4556,7 +4577,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-ghedjemis-younes-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4600,7 +4621,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-gilbert-clement-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4632,7 +4653,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-gilbert-clement-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4664,7 +4685,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-gilbert-clement-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4708,7 +4729,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-guilbot-bayle-louis-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4740,7 +4761,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-guilbot-bayle-louis-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4772,7 +4793,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-guilbot-bayle-louis-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4816,7 +4837,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-haroussi-adil-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4848,7 +4869,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-haroussi-adil-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4880,7 +4901,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-haroussi-adil-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4924,7 +4945,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-jen-mia-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4956,7 +4977,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-jen-mia-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -4988,7 +5009,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-jen-mia-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5032,7 +5053,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-leduc-chloe-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5064,7 +5085,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-leduc-chloe-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5096,7 +5117,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-leduc-chloe-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5140,7 +5161,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-lentzner-nicolas-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5172,7 +5193,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-lentzner-nicolas-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5204,7 +5225,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-lentzner-nicolas-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5248,7 +5269,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-mateus-lola-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5280,7 +5301,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-mateus-lola-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5312,7 +5333,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-mateus-lola-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5356,7 +5377,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-melaimi-arezki-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5388,7 +5409,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-melaimi-arezki-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5420,7 +5441,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-melaimi-arezki-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5464,7 +5485,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-mitra-dorian-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5496,7 +5517,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-mitra-dorian-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5528,7 +5549,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-mitra-dorian-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5572,7 +5593,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-moizeau-leo-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5604,7 +5625,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-moizeau-leo-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5636,7 +5657,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-moizeau-leo-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5680,7 +5701,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-mokhfi-ali-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5712,7 +5733,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-mokhfi-ali-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5744,7 +5765,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-mokhfi-ali-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5788,7 +5809,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-mostefai-abdeljalil-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5820,7 +5841,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-mostefai-abdeljalil-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5852,7 +5873,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-mostefai-abdeljalil-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5896,7 +5917,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-moussault-martin-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5928,7 +5949,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-moussault-martin-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -5960,7 +5981,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-moussault-martin-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6004,7 +6025,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-nitusgau-emma-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6036,7 +6057,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-nitusgau-emma-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6068,7 +6089,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-nitusgau-emma-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6112,7 +6133,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-noyelle-lahaye-lea-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6144,7 +6165,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-noyelle-lahaye-lea-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6176,7 +6197,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-noyelle-lahaye-lea-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6220,7 +6241,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-philippe-antoine-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6252,7 +6273,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-philippe-antoine-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6284,7 +6305,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-philippe-antoine-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6328,7 +6349,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-prigent-killian-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6360,7 +6381,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-prigent-killian-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6392,7 +6413,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-prigent-killian-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6436,7 +6457,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-renaud-pauline-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6468,7 +6489,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-renaud-pauline-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6500,7 +6521,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-renaud-pauline-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6544,7 +6565,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-saadani-nassim-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6576,7 +6597,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-saadani-nassim-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6608,7 +6629,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-saadani-nassim-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6652,7 +6673,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-sayah-sofiane-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6684,7 +6705,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-sayah-sofiane-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6716,7 +6737,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-sayah-sofiane-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6747,6 +6768,114 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
         
       </div>
     </details>
+    <details class="accordion rs-student" name="retours-soirees-group" data-student-slug="sedrati-lucas">
+      <summary><span class="accordion__title">SEDRATI Lucas</span>
+        <span class="rs-admin-controls admin-only" style="display:none;">
+          <button type="button" class="rs-move-up" title="Monter">▲</button>
+          <button type="button" class="rs-move-down" title="Descendre">▼</button>
+          <button type="button" class="rs-delete" title="Supprimer">✕</button>
+        </span>
+      </summary>
+      <div class="accordion__body">
+        <details class="accordion" name="soiree-group-sedrati-lucas">
+          <summary>Soirée n°1</summary>
+          <div class="accordion__body">
+            <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-sedrati-lucas-soiree-1" data-allow-link="1">
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
+              <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
+              <div class="upload-zone" hidden>
+                <button class="upload-toggle" type="button">Ajouter un document</button>
+                <form class="upload-form" hidden>
+                  <div class="upload-form__row"><input type="text" placeholder="Nom (optionnel — pour plusieurs fichiers laisse vide)" /><button class="btn btn-primary" type="submit">Déposer</button></div>
+                  <div class="drop-zone" style="margin-top:.5rem;"><span class="drop-label">Glisse un ou plusieurs fichiers ici ou clique</span><input type="file" multiple /></div>
+                  <p class="drop-hint">Tu peux glisser plusieurs fichiers simultanément — chacun sera déposé séparément.</p>
+                  <div class="progress-track"><div class="progress-bar"></div></div>
+                  <div class="upload-queue"></div>
+                  <p class="upload-status"></p>
+                </form>
+              </div>
+            </div>
+            <div class="notes-widget" data-notes-category="tronc-commun-retours-soirees-sedrati-lucas-soiree-1-notes">
+              <h4>Commentaire(s) - à retenir pour mon prochain passage</h4>
+              <div class="notes-list"><div class="doc-empty">Chargement…</div></div>
+              <form class="notes-form">
+                <textarea rows="2" placeholder="Écris un commentaire…"></textarea>
+                <div class="notes-form__actions">
+                  <button type="submit" class="btn btn-primary btn-sm">Envoyer</button>
+                  <button type="button" class="notes-record btn btn-ghost btn-sm">🎙️ Note vocale</button>
+                </div>
+                <p class="upload-status notes-status"></p>
+              </form>
+            </div>
+          </div>
+        </details>
+        <details class="accordion" name="soiree-group-sedrati-lucas">
+          <summary>Soirée n°2</summary>
+          <div class="accordion__body">
+            <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-sedrati-lucas-soiree-2" data-allow-link="1">
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
+              <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
+              <div class="upload-zone" hidden>
+                <button class="upload-toggle" type="button">Ajouter un document</button>
+                <form class="upload-form" hidden>
+                  <div class="upload-form__row"><input type="text" placeholder="Nom (optionnel — pour plusieurs fichiers laisse vide)" /><button class="btn btn-primary" type="submit">Déposer</button></div>
+                  <div class="drop-zone" style="margin-top:.5rem;"><span class="drop-label">Glisse un ou plusieurs fichiers ici ou clique</span><input type="file" multiple /></div>
+                  <p class="drop-hint">Tu peux glisser plusieurs fichiers simultanément — chacun sera déposé séparément.</p>
+                  <div class="progress-track"><div class="progress-bar"></div></div>
+                  <div class="upload-queue"></div>
+                  <p class="upload-status"></p>
+                </form>
+              </div>
+            </div>
+            <div class="notes-widget" data-notes-category="tronc-commun-retours-soirees-sedrati-lucas-soiree-2-notes">
+              <h4>Commentaire(s) - à retenir pour mon prochain passage</h4>
+              <div class="notes-list"><div class="doc-empty">Chargement…</div></div>
+              <form class="notes-form">
+                <textarea rows="2" placeholder="Écris un commentaire…"></textarea>
+                <div class="notes-form__actions">
+                  <button type="submit" class="btn btn-primary btn-sm">Envoyer</button>
+                  <button type="button" class="notes-record btn btn-ghost btn-sm">🎙️ Note vocale</button>
+                </div>
+                <p class="upload-status notes-status"></p>
+              </form>
+            </div>
+          </div>
+        </details>
+        <details class="accordion" name="soiree-group-sedrati-lucas">
+          <summary>Soirée n°3</summary>
+          <div class="accordion__body">
+            <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-sedrati-lucas-soiree-3" data-allow-link="1">
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
+              <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
+              <div class="upload-zone" hidden>
+                <button class="upload-toggle" type="button">Ajouter un document</button>
+                <form class="upload-form" hidden>
+                  <div class="upload-form__row"><input type="text" placeholder="Nom (optionnel — pour plusieurs fichiers laisse vide)" /><button class="btn btn-primary" type="submit">Déposer</button></div>
+                  <div class="drop-zone" style="margin-top:.5rem;"><span class="drop-label">Glisse un ou plusieurs fichiers ici ou clique</span><input type="file" multiple /></div>
+                  <p class="drop-hint">Tu peux glisser plusieurs fichiers simultanément — chacun sera déposé séparément.</p>
+                  <div class="progress-track"><div class="progress-bar"></div></div>
+                  <div class="upload-queue"></div>
+                  <p class="upload-status"></p>
+                </form>
+              </div>
+            </div>
+            <div class="notes-widget" data-notes-category="tronc-commun-retours-soirees-sedrati-lucas-soiree-3-notes">
+              <h4>Commentaire(s) - à retenir pour mon prochain passage</h4>
+              <div class="notes-list"><div class="doc-empty">Chargement…</div></div>
+              <form class="notes-form">
+                <textarea rows="2" placeholder="Écris un commentaire…"></textarea>
+                <div class="notes-form__actions">
+                  <button type="submit" class="btn btn-primary btn-sm">Envoyer</button>
+                  <button type="button" class="notes-record btn btn-ghost btn-sm">🎙️ Note vocale</button>
+                </div>
+                <p class="upload-status notes-status"></p>
+              </form>
+            </div>
+          </div>
+        </details>
+        
+      </div>
+    </details>
     <details class="accordion rs-student" name="retours-soirees-group" data-student-slug="sefiane-mohamed">
       <summary><span class="accordion__title">SEFIANE Mohamed</span>
         <span class="rs-admin-controls admin-only" style="display:none;">
@@ -6760,7 +6889,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-sefiane-mohamed-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6792,7 +6921,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-sefiane-mohamed-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6824,7 +6953,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-sefiane-mohamed-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6868,7 +6997,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-soudes-lucas-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6900,7 +7029,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-soudes-lucas-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6932,7 +7061,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-soudes-lucas-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -6976,7 +7105,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-soufi-malik-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -7008,7 +7137,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-soufi-malik-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -7040,7 +7169,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-soufi-malik-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -7084,7 +7213,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-thayaparan-karushikka-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -7116,7 +7245,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-thayaparan-karushikka-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -7148,7 +7277,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-thayaparan-karushikka-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -7192,7 +7321,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-toure-drissa-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -7224,7 +7353,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-toure-drissa-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -7256,7 +7385,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-toure-drissa-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -7300,7 +7429,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-verkoucke-margot-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -7332,7 +7461,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-verkoucke-margot-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -7364,7 +7493,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-verkoucke-margot-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -7408,7 +7537,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-williams-matt-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -7440,7 +7569,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-williams-matt-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -7472,7 +7601,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-williams-matt-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -7516,7 +7645,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°1</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-zenasni-youssef-soiree-1" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -7548,7 +7677,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°2</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-zenasni-youssef-soiree-2" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -7580,7 +7709,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
           <summary>Soirée n°3</summary>
           <div class="accordion__body">
             <div class="docboard" data-lazy="1" data-doc-category="tronc-commun-retours-soirees-zenasni-youssef-soiree-3" data-allow-link="1">
-              <div class="docboard__head"><div><h3>Documents</h3><p>Tous les membres connectés peuvent déposer.</p></div></div>
+              <div class="docboard__head"><div><h3>Documents</h3><p>Tout le monde peut déposer, avec ou sans compte.</p></div></div>
               <ul class="doc-list"><li class="doc-empty">Chargement…</li></ul>
               <div class="upload-zone" hidden>
                 <button class="upload-toggle" type="button">Ajouter un document</button>
@@ -9612,7 +9741,7 @@ nav.main-nav .submenu--mega .mega-sub a:hover{color:var(--accent-dark);}
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail }
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, sendPasswordResetEmail, signInAnonymously }
   from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore, collection, addDoc, doc, updateDoc, deleteDoc, getDoc, getDocs, setDoc,
          query, where, onSnapshot, serverTimestamp, arrayUnion }
@@ -9718,7 +9847,19 @@ function injectCustomPageSections() {
 }
 
 /* ─── Auth ──────────────────────────────────────────── */
-const ROLE_LABELS = { admin:"Administrateur", formateur:"Formateur", adherent:"Adhérent", pending:"En attente de validation" };
+const ROLE_LABELS = { admin:"Administrateur", formateur:"Formateur", adherent:"Adhérent", pending:"En attente de validation", invite:"Invité" };
+const GUEST_ROUTE="tronc-commun/retours-soirees";
+function guestName(){try{return (localStorage.getItem("afme-guest-name")||"").trim();}catch(e){return "";}}
+/* Nom affiché pour un dépôt d'invité (demandé s'il n'est pas encore renseigné) */
+function guestTag(){
+  if(!window.afmeProfile?.guest) return {};
+  let n=guestName();
+  if(!n){
+    n=(prompt("Votre nom (il sera affiché avec votre dépôt) :")||"").trim();
+    if(n){try{localStorage.setItem("afme-guest-name",n);}catch(e){}const i=document.getElementById("guest-name");if(i)i.value=n;}
+  }
+  return {uploadedByName:n||"Invité",authorName:n||"Invité"};
+}
 function broadcastProfile(p) { window.afmeProfile=p; document.dispatchEvent(new CustomEvent("afme:profile",{detail:p})); }
 
 async function ensureProfile(user) {
@@ -9742,6 +9883,20 @@ onAuthStateChanged(auth, async user => {
   const boot=document.getElementById("boot-loading");
   const sy=document.getElementById("sync-indicator"),ui=document.getElementById("user-info");
 
+  const gb=document.getElementById("guest-banner"),lo=document.getElementById("logout-btn");
+  if(!user||!user.isAnonymous){document.body.classList.remove("is-guest");if(gb)gb.hidden=true;if(lo)lo.textContent="Se déconnecter";}
+  if(user&&user.isAnonymous){
+    // Invité : uniquement la page Retours Soirées O2/3
+    ls.classList.remove("show"); as.classList.add("visible"); boot?.classList.add("hide");
+    document.body.classList.add("is-guest"); applyTheme(null);
+    if(gb)gb.hidden=false; if(lo)lo.textContent="Se connecter";
+    if(ui) ui.innerHTML='<span class="role-badge role-badge--invite">Invité</span>';
+    if(sy) sy.classList.add("on");
+    const bn=document.getElementById("pending-banner"); if(bn) bn.hidden=true;
+    broadcastProfile({uid:user.uid,role:"invite",email:null,guest:true,uploadPages:[]});
+    if(currentRoute()!==GUEST_ROUTE) location.hash="#"+GUEST_ROUTE;
+    return;
+  }
   if(!user){
     applyTheme(null); ls.classList.add("show"); as.classList.remove("visible");
     if(sy) sy.classList.remove("on"); broadcastProfile(null);
@@ -9792,6 +9947,19 @@ onAuthStateChanged(auth, async user => {
   document.getElementById("show-forgot")?.addEventListener("click",()=>show("forgot"));
   document.getElementById("from-forgot")?.addEventListener("click",()=>show("login"));
   document.getElementById("logout-btn")?.addEventListener("click",()=>signOut(auth));
+  const gBtn=document.getElementById("guest-enter"),gErr=document.getElementById("guest-err");
+  gBtn?.addEventListener("click",async()=>{
+    gErr.textContent="";gBtn.disabled=true;
+    try{await signInAnonymously(auth);}
+    catch(err){
+      gErr.textContent=err?.code==="auth/operation-not-allowed"||err?.code==="auth/admin-restricted-operation"
+        ?"L'accès sans compte n'est pas encore activé. Merci de réessayer plus tard."
+        :"Impossible d'ouvrir la page pour le moment ("+(err?.code||err?.message)+").";
+    }
+    gBtn.disabled=false;
+  });
+  const gName=document.getElementById("guest-name");
+  if(gName){gName.value=guestName();gName.addEventListener("input",()=>{try{localStorage.setItem("afme-guest-name",gName.value.trim());}catch(e){}});}
   lf?.addEventListener("submit",async e=>{e.preventDefault();el.textContent="";
     try{await signInWithEmailAndPassword(auth,lf.email.value,lf.password.value);lf.reset();}
     catch(err){
@@ -9855,11 +10023,12 @@ function routeAllowed(r){
   if(s&&s.visible===false&&afmeProfile?.role!=="admin") return false;
   // Comptes en attente : accès uniquement à l'accueil
   if(afmeProfile?.role==="pending") return base==="accueil";
+  if(afmeProfile?.role==="invite") return base===GUEST_ROUTE;
   if(afmeProfile) return true;
   return PUBLIC.includes(base);
 }
 function showRoute(r){
-  if(authOk&&!routeAllowed(r)){location.hash="#accueil";r="accueil";}
+  if(authOk&&!routeAllowed(r)){const home=afmeProfile?.role==="invite"?GUEST_ROUTE:"accueil";location.hash="#"+home;r=home;}
   const base=baseRoute(r);
   document.querySelectorAll(".route-section").forEach(s=>s.hidden=s.dataset.route!==base);
   document.querySelectorAll("nav.main-nav a").forEach(a=>{
@@ -9877,7 +10046,7 @@ window.addEventListener("DOMContentLoaded",()=>showRoute(currentRoute()));
 document.addEventListener("afme:profile",e=>{
   authOk=true;afmeProfile=e.detail;
   const dv=document.getElementById("nav-devoirs"),ad=document.getElementById("nav-admin"),stf=document.getElementById("nav-staff");
-  if(dv)dv.hidden=!(afmeProfile&&afmeProfile.role!=="pending");if(ad)ad.hidden=afmeProfile?.role!=="admin";
+  if(dv)dv.hidden=!(afmeProfile&&afmeProfile.role!=="pending"&&afmeProfile.role!=="invite");if(ad)ad.hidden=afmeProfile?.role!=="admin";
   if(stf)stf.hidden=!isStaff();
   showRoute(currentRoute());
 });
@@ -10038,7 +10207,7 @@ function renderDocs(listEl,docs,isAdmin){
         <a class="doc-card__name doc-card__name--link" href="${d.url}" target="_blank" rel="noopener">${d.label}</a>
         <div class="doc-card__meta">${inRes
           ? `<span class="doc-type">${docTypeLabel(d)}</span>${d.createdAt?" Ajouté le "+fmtDate(d.createdAt):""}${isLink?"":" · "+fmtSize(d.size)}`
-          : `${fmtDate(d.createdAt)}${isLink?"":` · ${fmtSize(d.size)}`} · ${d.uploadedByEmail||"—"}`}</div>
+          : `${fmtDate(d.createdAt)}${isLink?"":` · ${fmtSize(d.size)}`} · ${escHtml(d.uploadedByEmail||d.uploadedByName||"—")}`}</div>
         ${d.resourceDate?`<div class="doc-card__meta">📅 ${d.resourceDate}</div>`:""}
         ${d.comment?`<div class="doc-card__comment">${d.comment}</div>`:""}
         ${isAdmin?`<div class="doc-card__move"><select class="mv-sel" data-id="${d.id}">${moveOptions(d.category)}</select><button class="btn btn-ghost btn-sm mv-btn" data-id="${d.id}">Déplacer</button></div>`:""}
@@ -10150,7 +10319,7 @@ function initDocboard(board){
       if(!name||!url){linkStatus.textContent="Nom et lien requis.";linkStatus.className="upload-status err";return;}
       if(!/^https?:\/\//i.test(url)) url="https://"+url;
       try{
-        await addDoc(collection(db,"documents"),{category:cat,label:name,url,isExternalLink:true,uploadedByEmail:user.email,uploadedByUid:user.uid,createdAt:serverTimestamp()});
+        await addDoc(collection(db,"documents"),{category:cat,label:name,url,isExternalLink:true,uploadedByEmail:user.email,uploadedByUid:user.uid,createdAt:serverTimestamp(),...guestTag()});
         linkStatus.textContent="Ajouté ✓";linkStatus.className="upload-status ok";linkForm.reset();linkForm.hidden=true;linkToggle.textContent="Ajouter un lien";
       }catch(err){linkStatus.textContent="Erreur : "+err.message;linkStatus.className="upload-status err";}
     });
@@ -10175,6 +10344,7 @@ function initDocboard(board){
   form?.addEventListener("submit",async e=>{
     e.preventDefault();
     const user=auth.currentUser;if(!user)return;
+    const gTag=guestTag();
     const fileInput=form.querySelector("input[type=file]");
     const files=pendingFiles.length?pendingFiles:(fileInput?.files?.length?Array.from(fileInput.files):[]);
     if(!files.length){statusEl.textContent="Choisis au moins un fichier.";statusEl.className="upload-status err";return;}
@@ -10198,7 +10368,7 @@ function initDocboard(board){
       await new Promise((res,rej)=>uploadOneFile(path,file,
         pct=>{bar.style.width=Math.round((done/files.length+pct/100/files.length)*100)+"%";},
         async url=>{
-          await addDoc(collection(db,"documents"),{category:cat,label,url,path,size:file.size,uploadedByEmail:user.email,uploadedByUid:user.uid,createdAt:serverTimestamp(),...extra});
+          await addDoc(collection(db,"documents"),{category:cat,label,url,path,size:file.size,uploadedByEmail:user.email,uploadedByUid:user.uid,createdAt:serverTimestamp(),...extra,...gTag});
           done++;res();
         },rej));
     }
@@ -10422,7 +10592,7 @@ function initNotesWidget(el){
     const isAdmin=window.afmeProfile?.role==="admin";
     listEl.innerHTML=items.length?items.map(n=>`
       <div class="note-item">
-        <div class="note-item__meta">${n.authorEmail||"—"} · ${fmtDate(n.createdAt)}${isAdmin?` <button type="button" class="note-del" data-id="${n.id}" data-path="${n.path||""}">✕</button>`:""}</div>
+        <div class="note-item__meta">${escHtml(n.authorEmail||n.authorName||"—")} · ${fmtDate(n.createdAt)}${isAdmin?` <button type="button" class="note-del" data-id="${n.id}" data-path="${n.path||""}">✕</button>`:""}</div>
         ${n.type==="audio"?`<audio controls src="${n.url}"></audio>`:`<div class="note-item__text">${n.text||""}</div>`}
       </div>`).join(""):`<div class="doc-empty">Aucun commentaire pour le moment.</div>`;
     listEl.querySelectorAll(".note-del").forEach(btn=>{
@@ -10442,8 +10612,8 @@ function initNotesWidget(el){
     const text=textarea.value.trim();
     if(!text){statusEl.textContent="Écris un commentaire.";statusEl.className="upload-status err";return;}
     try{
-      await addDoc(collection(db,"notes"),{category:cat,type:"text",text,authorEmail:user.email,authorUid:user.uid,createdAt:serverTimestamp()});
-      textarea.value="";statusEl.textContent="Envoyé ✓";statusEl.className="upload-status ok";
+      await addDoc(collection(db,"notes"),{category:cat,type:"text",text,authorEmail:user.email,authorUid:user.uid,createdAt:serverTimestamp(),...guestTag()});
+      form.reset();textarea.value="";statusEl.textContent="Envoyé ✓";statusEl.className="upload-status ok";
     }catch(err){statusEl.textContent="Erreur : "+err.message;statusEl.className="upload-status err";}
   });
 
@@ -10457,6 +10627,7 @@ function initNotesWidget(el){
         mediaRecorder.ondataavailable=e=>chunks.push(e.data);
         mediaRecorder.onstop=async()=>{
           stream.getTracks().forEach(t=>t.stop());
+          const gTag=guestTag();
           const blob=new Blob(chunks,{type:"audio/webm"});
           statusEl.textContent="Envoi de la note vocale…";statusEl.className="upload-status";
           const path=`notes/${cat}/${Date.now()}.webm`;
@@ -10464,7 +10635,7 @@ function initNotesWidget(el){
           try{
             await uploadBytes(r,blob);
             const url=await getDownloadURL(r);
-            await addDoc(collection(db,"notes"),{category:cat,type:"audio",url,path,authorEmail:user.email,authorUid:user.uid,createdAt:serverTimestamp()});
+            await addDoc(collection(db,"notes"),{category:cat,type:"audio",url,path,authorEmail:user.email,authorUid:user.uid,createdAt:serverTimestamp(),...gTag});
             statusEl.textContent="Note vocale envoyée ✓";statusEl.className="upload-status ok";
           }catch(err){statusEl.textContent="Erreur : "+err.message;statusEl.className="upload-status err";}
         };
@@ -13305,8 +13476,8 @@ document.addEventListener("afme:profile",e=>{
       onDocs.forEach(f=>{try{f();}catch(e){console.error(e);}});
     },err=>{console.error("Ressources :",err);unsub=null;});
   }
-  document.addEventListener("afme:profile",e=>{const r=e.detail?.role;if(r&&r!=="pending")startDocs();});
-  if(window.afmeProfile&&window.afmeProfile.role!=="pending") startDocs();
+  document.addEventListener("afme:profile",e=>{const r=e.detail?.role;if(r&&r!=="pending"&&r!=="invite")startDocs();});
+  if(window.afmeProfile&&!["pending","invite"].includes(window.afmeProfile.role)) startDocs();
 
   /* Liens écrits en dur dans les pages (ex. Concours) */
   const staticLinks=[...document.querySelectorAll('.route-section[data-route^="ressources/"] .doc-list a.doc-card__name--link[target="_blank"]')].map(a=>({
